@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>To-do list</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/new">
+        <ion-icon slot="icon-only" name="add">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p class="message"
+    *ngIf="!anyCompletedTask && !anyUncompletedTask; else tasks">
+    Nothing to do? Create a task pushing on <span>+</span>
+  </p>
+
+  <ng-template #tasks>
+    <app-uncompleted *ngIf="anyUncompletedTask"></app-uncompleted>
+    <app-completed *ngIf="anyCompletedTask"></app-completed>
+  </ng-template>
+
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="resetList()" size="small">
+      <ion-icon name="refresh-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
